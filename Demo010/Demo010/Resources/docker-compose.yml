@@ -1,0 +1,22 @@
+﻿## MSSQL Connection String 
+## Server=localhost,1433;Initial Catalog=MyDb;Integrated Security=True;User Id=sa;Password=ChangeMe!00;
+
+version: '3.1'
+
+services:
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: mssql01
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Yes
+      SA_PASSWORD: $SA_PASSWORD
+      MSSQL_PID: Express
+    volumes:
+      - mssqldb01:/var/opt/mssql:rw
+
+volumes:
+  mssqldb01:
